@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import Topbar from '../Topbar';
 import Bottombar from '../Bottombar';
 
-export default function MovieSection() {
+export default function MovieSection(props) {
   const { idMovie } = useParams();
   const [movieSection, setMovieSection] = useState();
 
@@ -21,8 +21,7 @@ export default function MovieSection() {
     return(
       <Fragment>
         <div className="loading-screen">
-          Carregando ...
-          {/* <img className="loading-screen-gif" alt="loading.gif" src="./assets/img/loading.gif" /> */}
+          <img className="loading-screen-gif" alt="loading.gif" src={props.loading} />
         </div>
       </Fragment>
     );

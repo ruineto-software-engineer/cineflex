@@ -18,8 +18,7 @@ export default function SuccessScreen(props) {
     return(
       <Fragment>
         <div className="loading-screen">
-          Carregando ...
-          {/* <img className="loading-screen-gif" alt="loading.gif" src="./assets/img/loading.gif" /> */}
+          <img className="loading-screen-gif" alt="loading.gif" src={props.loading} />
         </div>
       </Fragment>
     );    
@@ -42,7 +41,7 @@ export default function SuccessScreen(props) {
           <div className="movie-section-content">
             <div className="movie-section">
               <p className="movie-section-title">Filme e sessão</p>
-              <div className="movie-section-container">
+              <div className="movie-section-container-subtitle">
                 <p className="movie-section-subtitle">{movieSection.movie.title}</p>
                 <p className="movie-section-subtitle">{movieSection.day.date} {movieSection.name}</p>
               </div>

@@ -22,8 +22,7 @@ export default function SectionDetails(props) {
     return(
       <Fragment>
         <div className="loading-screen">
-          Carregando ...
-          {/* <img className="loading-screen-gif" alt="loading.gif" src="./assets/img/loading.gif" /> */}
+          <img className="loading-screen-gif" alt="loading.gif" src={props.loading} />
         </div>
       </Fragment>
     );    

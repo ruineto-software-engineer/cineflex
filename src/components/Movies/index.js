@@ -4,7 +4,7 @@ import axios from 'axios';
 import Topbar from "../Topbar";
 import Movie from "./Movie";
 
-export default function Movies() {
+export default function Movies(props) {
   const [movies, setMovies] = useState();
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function Movies() {
     return(
       <Fragment>
         <div className="loading-screen">
-          <img className="loading-screen-gif" alt="loading.gif" src="./assets/gif/loading.gif"/>
+          <img className="loading-screen-gif" alt="loading.gif" src={props.loading}/>
         </div>
       </Fragment>
     );

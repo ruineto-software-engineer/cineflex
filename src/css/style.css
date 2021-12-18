@@ -210,6 +210,11 @@ body, html{
   margin-bottom: 20px;
 }
 
+.movie-section-container{
+  padding-bottom: 120px;
+  margin-left: 24px;  
+}
+
 .movie-section-title{
   font-weight: bold;
   font-size: 24px;
