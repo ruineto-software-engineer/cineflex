@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Fragment, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Topbar from '../Topbar';
 import Bottombar from '../Bottombar';
 
@@ -37,9 +37,11 @@ export default function MovieSection() {
 
         {currentMovieWeekday.showtimes.map((currentMovieShowTimes) => {
           return (
-            <button className='current-movie-show-times-button' key={currentMovieShowTimes.id}>
-              { currentMovieShowTimes.name }
-            </button>
+            <Link key={currentMovieShowTimes.id} to={`/section-details/${currentMovieShowTimes.id}`}>
+              <button className='current-movie-show-times-button'>
+                { currentMovieShowTimes.name }
+              </button>
+            </Link>
           );
         })}
       </div>
@@ -59,7 +61,7 @@ export default function MovieSection() {
           { movieSectionReader }
         </div>
 
-        <Bottombar title={movieSection.title} posterURL={movieSection.posterURL} />
+        <Bottombar title={movieSection.title} posterURL={movieSection.posterURL} weekday={undefined} showtime={undefined} />
       </main>
     </Fragment>
   );
