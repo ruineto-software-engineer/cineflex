@@ -108,6 +108,19 @@ body, html{
   color: #293845;
 }
 
+.main-title-success{
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.04em;
+  
+  color: #247A6B;
+}
+
 .movies-container{
   display: flex;
   align-items: center;
@@ -150,11 +163,6 @@ body, html{
   height: 100%;
 }
 
-.movie-section-container{
-  padding-bottom: 120px;
-  margin-left: 23px;
-}
-
 .current-movie{
   margin-bottom: 23px;
 }
@@ -172,6 +180,10 @@ body, html{
 .current-movie-show-times-button{
   width: 83px;
   height: 43px;
+
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: 0.02em;
   
   background: #E8833A;
 
@@ -181,6 +193,60 @@ body, html{
   color: #FFFFFF;
 
   margin-right: 8px;
+}
+
+.movie-section-flex{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.movie-section-content{
+  width: 90%;
+}
+
+.movie-section{
+  margin-bottom: 20px;
+}
+
+.movie-section-title{
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0.04em;
+
+  color: #293845;
+}
+
+.movie-section-subtitle{
+  left: 28px;
+  top: 202px;
+  
+  font-size: 22px;
+  line-height: 26px;
+  letter-spacing: 0.04em;
+  
+  color: #293845;  
+}
+
+.movie-section-button{
+  width: 225px;
+  height: 42px;
+  
+  background: #E8833A;
+
+  border: none;
+
+  border-radius: 3px;
+  
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: 0.04em;
+
+  color: #FFFFFF;
+
+  margin-top: 10px;
 }
 
 .seats-container{

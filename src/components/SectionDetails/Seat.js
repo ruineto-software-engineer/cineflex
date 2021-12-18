@@ -6,10 +6,10 @@ export default function Seat(props) {
   function chosenSeat(selectedSeat, valueClickedSeat) {
     if(selectedSeat === `current-seat-available`){
       if(valueClickedSeat === `current-seat-selected`){
-        props.handle(props.id, '', false);
+        props.handle(props.id, false);
         setClickedSeat(`current-seat-available`);
       }else{
-        props.handle(props.id, '', true);
+        props.handle(props.id, true);
         setClickedSeat(`current-seat-selected`);
       }
     }else{

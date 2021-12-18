@@ -5,12 +5,10 @@ import Topbar from '../Topbar';
 import Bottombar from '../Bottombar';
 import Seat from './Seat';
 
-export default function SectionDetails() {
+export default function SectionDetails(props) {
   const { idSection } = useParams();
   const [sectionDetais, setSectionDetais] = useState();
   const [reserveSeats, setReserveSeats] = useState({ids: []});
-  const [reserveName, setReserveName] = useState('');
-  const [reserveCPF, setReserveCPF] = useState('');
   
   useEffect(() => {
     const promisse = axios.get(`https://mock-api.driven.com.br/api/v4/cineflex/showtimes/${idSection}/seats`);
@@ -31,22 +29,28 @@ export default function SectionDetails() {
     );    
   }
 
-  function handleSeat(idSeat, newArrayIds, addArray){
+  function handleSeat(idSeat, addArray){
     if(addArray){
-      setReserveSeats(newArrayIds = { ids: [ ...reserveSeats.ids, idSeat ]});
+      setReserveSeats({ ids: [ ...reserveSeats.ids, idSeat ]});
     }else{
-      setReserveSeats(newArrayIds = { ids: reserveSeats.ids.filter((idSeatCurrent) => {
+      setReserveSeats({ ids: reserveSeats.ids.filter((idSeatCurrent) => {
         return idSeatCurrent !== idSeat;
       })});
     }
   }
 
   function handleName(e){
-    setReserveName(e.target.value);
+    setReserveSeats({
+      ...reserveSeats,
+      'name': e.target.value
+    });
   }
 
   function handleCPF(e){
-    setReserveCPF(e.target.value);
+    setReserveSeats({
+      ...reserveSeats,
+      'cpf': e.target.value
+    });
   }
 
   const sectionDetaisReader = sectionDetais.seats.map((currentSeat) => {
@@ -61,20 +65,10 @@ export default function SectionDetails() {
     );
   });
 
-  function sendObject(finalObject) {
-    setReserveSeats(finalObject = {
-      ...reserveSeats,
-      ['name']: reserveName,
-      ['cpf']: reserveCPF
-    });
-
-    const promisse = axios.post(`https://mock-api.driven.com.br/api/v4/cineflex/seats/book-many`, reserveSeats);
-    promisse.then((response) => {
-      console.log(response.status);
-    });
+  function sendObject() {
+    props.sendSuccesObject(reserveSeats, idSection, '');
+    axios.post(`https://mock-api.driven.com.br/api/v4/cineflex/seats/book-many`, reserveSeats);
   }
-
-  console.log(reserveSeats);
 
   return(
     <Fragment>
@@ -117,7 +111,7 @@ export default function SectionDetails() {
           </div>
           <div className="form-group">
             <label className='form-label'>CPF do comprador:</label>
-            <input onChange={handleCPF}  type="text" className="form-control" placeholder="Digite seu CPF..." />
+            <input onChange={handleCPF} type="text" className="form-control" placeholder="Digite seu CPF..." />
           </div>
 
           <Link to='/success-screen'>
