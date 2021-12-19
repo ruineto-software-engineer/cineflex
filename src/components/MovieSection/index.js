@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { Fragment, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import Topbar from '../Topbar';
-import Bottombar from '../Bottombar';
+import Bottombar from '../Bars/Bottombar';
 
 export default function MovieSection(props) {
   const { idMovie } = useParams();
@@ -50,8 +49,6 @@ export default function MovieSection(props) {
   return(
     <Fragment>
       <main className="main-container">
-        <Topbar />
-
         <div className="main-title-container">
           <h2 className="main-title">Selecione o horário</h2>
         </div>

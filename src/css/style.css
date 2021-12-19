@@ -28,11 +28,44 @@ body, html{
   left: 0;
 }
 
+.topbar-backpage{
+  height: 67px;
+  width: 100%;
+
+  background-color: #C3CFD9;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
 .topbar-brand{
   font-size: 34px;
   line-height: 40px;
   
   color: #E8833A;  
+}
+
+.topbar-brand-backpage{
+  font-size: 34px;
+  line-height: 40px;
+
+  margin-left: 23px;
+  
+  color: #E8833A;
+}
+
+ion-icon{
+  font-size: 34px;
+  line-height: 40px;
+  
+  margin-right: 23px;
+
+  color: #E8833A;
 }
 
 .bottombar{
@@ -465,12 +498,18 @@ body, html{
 
 .loading-screen{
   height: 100%;
+  width: 100%;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
   background-color: #3F3E35;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
 .loading-screen-gif{

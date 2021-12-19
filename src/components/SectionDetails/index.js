@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { Fragment, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import Topbar from '../Topbar';
-import Bottombar from '../Bottombar';
+import Bottombar from '../Bars/Bottombar';
 import Seat from './Seat';
 
 export default function SectionDetails(props) {
@@ -72,8 +71,6 @@ export default function SectionDetails(props) {
   return(
     <Fragment>
       <main className="main-container">
-        <Topbar />
-
         <div className="main-title-container">
           <h2 className="main-title">Selecione o(s) assento(s)</h2>
         </div>

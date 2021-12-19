@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react/cjs/react.development";
+import { useState } from 'react';
+import Topbar from "./components/Bars/Topbar";
 import Movies from "./components/Movies";
 import MovieSection from "./components/MovieSection";
 import SectionDetails from "./components/SectionDetails";
@@ -17,6 +18,8 @@ export default function App() {
 
   return(
     <BrowserRouter>
+      <Topbar />
+
       <Routes>
         <Route path="/" element={<Movies loading={Loaging} />} />
         <Route path="/movie-section/:idMovie" element={<MovieSection loading={Loaging} />} />

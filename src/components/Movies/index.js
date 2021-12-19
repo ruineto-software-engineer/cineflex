@@ -1,7 +1,6 @@
+import axios from 'axios';
 import { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from 'axios';
-import Topbar from "../Topbar";
 import Movie from "./Movie";
 
 export default function Movies(props) {
@@ -36,8 +35,6 @@ export default function Movies(props) {
   return(
     <Fragment>
       <main className="main-container">
-        <Topbar />
-
         <div className="main-title-container">
           <h2 className="main-title">Selecione o filme</h2>
         </div>

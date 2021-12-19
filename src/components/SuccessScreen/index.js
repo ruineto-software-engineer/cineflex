@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Topbar from '../Topbar';
 
 export default function SuccessScreen(props) {
   const [movieSection, setMovieSection] = useState();
@@ -27,8 +26,6 @@ export default function SuccessScreen(props) {
   return(
     <Fragment>
       <main className="main-container">
-        <Topbar />
-
         <div className="main-title-container">
           <h2 className="main-title-success">
             Pedido feito
