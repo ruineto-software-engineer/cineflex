@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Topbar(props) {
+export default function Topbar() {
   const navigate = useNavigate();
 
   function hadleNavigate() {
@@ -12,9 +12,11 @@ export default function Topbar(props) {
     <Fragment>
       {window.location.pathname !== '/' ?
         <div className="topbar-backpage">
-          <h1 className="topbar-brand-backpage">CINEFLEX</h1>
+          <div className="topbar-backpage-content">
+            <h1 className="topbar-brand-backpage">CINEFLEX</h1>
 
-          <ion-icon onClick={hadleNavigate} name="arrow-undo-circle" />
+            <ion-icon onClick={hadleNavigate} name="arrow-undo-circle" />
+          </div>
         </div>
       :
         <div className="topbar">

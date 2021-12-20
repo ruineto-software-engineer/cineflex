@@ -3,11 +3,14 @@ import { Fragment, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Bottombar from '../Bars/Bottombar';
 import Seat from './Seat';
+import { cpfMask } from './mask';
 
 export default function SectionDetails(props) {
   const { idSection } = useParams();
   const [sectionDetais, setSectionDetais] = useState();
   const [reserveSeats, setReserveSeats] = useState({ids: []});
+  const [cpfValue, setCpfValue] = useState('');
+  const [nameValue, setNameValue] = useState('');
   
   useEffect(() => {
     const promisse = axios.get(`https://mock-api.driven.com.br/api/v4/cineflex/showtimes/${idSection}/seats`);
@@ -29,15 +32,18 @@ export default function SectionDetails(props) {
 
   function handleSeat(idSeat, addArray){
     if(addArray){
-      setReserveSeats({ ids: [ ...reserveSeats.ids, idSeat ]});
+      setReserveSeats({ ...reserveSeats, ids: [ ...reserveSeats.ids, idSeat ]});
     }else{
-      setReserveSeats({ ids: reserveSeats.ids.filter((idSeatCurrent) => {
-        return idSeatCurrent !== idSeat;
-      })});
+      setReserveSeats({
+        ...reserveSeats,
+        ids: reserveSeats.ids.filter((idSeatCurrent) => { return idSeatCurrent !== idSeat;})
+      });
     }
   }
 
   function handleName(e){
+    setNameValue(e.target.value);
+
     setReserveSeats({
       ...reserveSeats,
       'name': e.target.value
@@ -45,11 +51,17 @@ export default function SectionDetails(props) {
   }
 
   function handleCPF(e){
+    let cpfCurrentValue = cpfMask(e.target.value);
+
+    setCpfValue(cpfCurrentValue);
+
     setReserveSeats({
       ...reserveSeats,
-      'cpf': e.target.value
+      'cpf': cpfCurrentValue
     });
   }
+
+  console.log(reserveSeats);
 
   const sectionDetaisReader = sectionDetais.seats.map((currentSeat) => {
     return (
@@ -103,11 +115,11 @@ export default function SectionDetails(props) {
         <form className='form'>
           <div className="form-group">
             <label className='form-label'>Nome do comprador:</label>
-            <input onChange={handleName} type="text" className="form-control" placeholder="Digite seu nome..." />
+            <input onChange={handleName} type="text" value={nameValue} className="form-control" placeholder="Digite seu nome..." />
           </div>
           <div className="form-group">
             <label className='form-label'>CPF do comprador:</label>
-            <input onChange={handleCPF} type="text" className="form-control" placeholder="Digite seu CPF..." />
+            <input onChange={handleCPF} type="text" value={cpfValue} maxLength='14' className="form-control" placeholder="Digite seu CPF..." />
           </div>
 
           <Link to='/success-screen'>

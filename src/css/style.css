@@ -36,11 +36,19 @@ body, html{
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 
   position: fixed;
   top: 0;
   left: 0;
+}
+
+.topbar-backpage-content{
+  width: 90%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .topbar-brand{
@@ -53,8 +61,6 @@ body, html{
 .topbar-brand-backpage{
   font-size: 34px;
   line-height: 40px;
-
-  margin-left: 23px;
   
   color: #E8833A;
 }
@@ -62,8 +68,6 @@ body, html{
 ion-icon{
   font-size: 34px;
   line-height: 40px;
-  
-  margin-right: 23px;
 
   color: #E8833A;
 }
@@ -446,6 +450,32 @@ ion-icon{
   align-items: center;
 }
 
+.form-info{
+  font-size: 18px;
+  line-height: 21px;
+
+  margin: 7px 0;
+
+  color: #293845;
+
+  text-align: center;  
+}
+
+.form-group-container{
+  margin-bottom: 30px;
+}
+
+.form-group-title{
+  font-size: 18px;
+  line-height: 21px;
+
+  margin-bottom: 7px;
+
+  color: #293845;
+
+  text-align: center;  
+}
+
 .form-group{
   display: flex;
   flex-direction: column;
@@ -482,7 +512,7 @@ ion-icon{
   width: 225px;
   height: 42px;
 
-  margin-top: 57px;
+  margin-top: 27px;
   
   background: #E8833A;
 
