@@ -65,7 +65,8 @@ export default function SectionDetails(props) {
       <Fragment key={currentSeat.id}>
         {currentSeat.isAvailable ?
           <Seat classSeat='current-seat-available' name={currentSeat.name} 
-                seatState={reserveSeats} id={currentSeat.id} handle={handleSeat} />
+                seatState={reserveSeats} id={currentSeat.id} handle={handleSeat} 
+          />
         :
           <Seat classSeat='current-seat-unavailable' name={currentSeat.name} />
         }
@@ -96,8 +97,6 @@ export default function SectionDetails(props) {
     props.sendSuccesObject(reserveSeats, idSection, '');
     axios.post(`https://mock-api.driven.com.br/api/v4/cineflex/seats/book-many`, reserveSeats);
   }
-
-  console.log(reserveSeats);
 
   return(
     <Fragment>
@@ -137,7 +136,6 @@ export default function SectionDetails(props) {
             :
             <Fragment>
               {reserveSeatsReader}
-
             </Fragment>
           }
           
