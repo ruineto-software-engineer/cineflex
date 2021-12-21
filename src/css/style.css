@@ -247,6 +247,20 @@ ion-icon{
   margin-bottom: 20px;
 }
 
+.movie-section-div{
+  margin-bottom: 10px;
+  overflow-wrap: break-word;
+  word-break: break-all;
+}
+
+.movie-section-subtitle-seat{
+  font-size: clamp(10px, 6vw, 20px);
+  line-height: 26px;
+  letter-spacing: 0.04em;
+  
+  color: #293845;
+}
+
 .movie-section-container{
   padding-bottom: 120px;
   margin-left: 24px;  
@@ -262,14 +276,15 @@ ion-icon{
 }
 
 .movie-section-subtitle{
-  left: 28px;
-  top: 202px;
-  
-  font-size: 22px;
+  font-size: clamp(10px, 6vw, 20px);
   line-height: 26px;
   letter-spacing: 0.04em;
   
   color: #293845;  
+}
+
+.movie-section-button-container{
+  padding-bottom: 25px;
 }
 
 .movie-section-button{

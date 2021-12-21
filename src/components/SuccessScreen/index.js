@@ -54,14 +54,26 @@ export default function SuccessScreen(props) {
             </div>
               
             <div className="movie-section">
-              <p className="movie-section-title">Comprador</p>
-              <p className="movie-section-subtitle">Nome: {props.successObject.name}</p>
-              <p className="movie-section-subtitle">CPF: {props.successObject.cpf}</p>
+              <p className="movie-section-title">Compradores</p>
+
+              {props.successObject.compradores.map((comprador,index) => {
+                return(
+                  <Fragment key={comprador.idAssento}>
+                    <div className="movie-section-div">
+                      <p className="movie-section-subtitle-seat">Assento {comprador.idAssento}</p>
+                      <p className="movie-section-subtitle">Nome: {comprador.nome}</p>
+                      <p className="movie-section-subtitle">CPF: {comprador.cpf}</p>
+                    </div>
+                  </Fragment>
+                );
+              })}
             </div>
           </div>
 
           <Link to='/'>
-            <button className="movie-section-button">Voltar pra Home</button>
+            <div className='movie-section-button-container'>
+              <button className="movie-section-button">Voltar pra Home</button>
+            </div>
           </Link>
         </div>
       </main>
