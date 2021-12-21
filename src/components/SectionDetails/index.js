@@ -10,7 +10,6 @@ export default function SectionDetails(props) {
   const [sectionDetais, setSectionDetais] = useState();
   const [reserveSeats, setReserveSeats] = useState({ids: [], compradores: []});
   const [inputInfo, setInputInfo] = useState({ idAssento: '', nome: "", cpf: "" });
-  const [confirm, setConfirm] = useState(false);
   
   useEffect(() => {
     const promisse = axios.get(`https://mock-api.driven.com.br/api/v4/cineflex/showtimes/${idSection}/seats`);
@@ -31,6 +30,10 @@ export default function SectionDetails(props) {
   }
 
   function handleSeat(idSeat, addArray){
+    if(addArray === undefined){
+      return;
+    }
+
     if(addArray){
       setReserveSeats(
         { ids: [ ...reserveSeats.ids, idSeat ], 
@@ -42,16 +45,11 @@ export default function SectionDetails(props) {
       console.log(objectReader);
 
       if(objectReader.length === 1){
-        if(window.confirm("Você realmente deseja desmarcar este assento?")){
-          setConfirm(true);
-          setReserveSeats(
-            { ids: reserveSeats.ids.filter((idSeatCurrent) => { return idSeatCurrent !== idSeat; }), 
-              compradores: reserveSeats.compradores.filter((comprador) => { return comprador.idAssento !== idSeat; })
-            }
-          );
-        }else{
-          setConfirm(false);
-        }
+        setReserveSeats(
+          { ids: reserveSeats.ids.filter((idSeatCurrent) => { return idSeatCurrent !== idSeat; }), 
+            compradores: reserveSeats.compradores.filter((comprador) => { return comprador.idAssento !== idSeat; })
+          }
+        );
       }else{
         setReserveSeats(
           { ids: reserveSeats.ids.filter((idSeatCurrent) => { return idSeatCurrent !== idSeat; }), 
@@ -66,8 +64,8 @@ export default function SectionDetails(props) {
     return (
       <Fragment key={currentSeat.id}>
         {currentSeat.isAvailable ?
-          <Seat classSeat='current-seat-available' name={currentSeat.name} confirmStage={confirm} 
-                setCofirmStage={setConfirm} seatState={reserveSeats} id={currentSeat.id} handle={handleSeat} />
+          <Seat classSeat='current-seat-available' name={currentSeat.name} 
+                seatState={reserveSeats} id={currentSeat.id} handle={handleSeat} />
         :
           <Seat classSeat='current-seat-unavailable' name={currentSeat.name} />
         }
@@ -98,6 +96,8 @@ export default function SectionDetails(props) {
     props.sendSuccesObject(reserveSeats, idSection, '');
     axios.post(`https://mock-api.driven.com.br/api/v4/cineflex/seats/book-many`, reserveSeats);
   }
+
+  console.log(reserveSeats);
 
   return(
     <Fragment>
@@ -132,32 +132,18 @@ export default function SectionDetails(props) {
         </div>
 
         <form className='form'>
-
-          {/*           
-            <div className="form-group-container">
-              <div className="form-group">
-                <label className='form-label'>Nome do comprador:</label>
-                <input onChange={handleName} type="text" className="form-control" placeholder="Digite seu nome..." />
-              </div>
-              <div className="form-group">
-                <label className='form-label'>CPF do comprador:</label>
-                <input onChange={handleCPF} type="text" className="form-control" placeholder="Digite seu CPF..." />
-              </div>
-            </div>
-          */}
-
           { reserveSeats.ids.length === 0 ?
             <p className='form-info'>Por gentileza, selecione os assentos desejados.</p>
             :
             <Fragment>
               {reserveSeatsReader}
 
-              <Link to='/success-screen'>
-                <button onClick={() => sendObject()} type="button" className="form-button">Reservar assento(s)</button>
-              </Link>
             </Fragment>
           }
-
+          
+          <Link to='/success-screen'>
+            <button onClick={() => sendObject()} type="button" className="form-button">Reservar assento(s)</button>
+          </Link>
         </form>
 
         <Bottombar title={sectionDetais.movie.title} posterURL={sectionDetais.movie.posterURL} weekday={sectionDetais.day.weekday} showtime={sectionDetais.name} />
