@@ -45,6 +45,7 @@ export default function InfoSeat(props) {
   function handleEdit() {
     if(window.confirm("Você realmente deseja editar esta reserva?")){
       setInputCondition("");
+      setEditButtonCondition("disabled-button");
       setConfirmButtonCondition("");
       for (let i = 0; i < props.seatValue.compradores.length; i++) {
         const element = props.seatValue.compradores[i].idAssento;
