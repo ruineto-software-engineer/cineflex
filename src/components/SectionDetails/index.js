@@ -41,7 +41,7 @@ export default function SectionDetails(props) {
     return(
       <Fragment>
         <div className="loading-screen">
-          <img className="loading-screen-gif" alt="loading.gif" src={props.loading} />
+          <img className="loading-screen-icon" alt="loading.gif" src={props.loading} />
         </div>
       </Fragment>
     );    
@@ -101,7 +101,9 @@ export default function SectionDetails(props) {
               stageNumberSeat={setSeatNumberName}
             />
         :
-          <Seat classSeat='current-seat-unavailable' name={numberSeatValidation(currentSeat.name)} />
+          <Seat classSeat='current-seat-unavailable' name={numberSeatValidation(currentSeat.name)}
+            stageNumberSeat={setSeatNumberName}
+          />
         }
       </Fragment>
     );

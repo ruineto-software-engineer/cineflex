@@ -5,7 +5,7 @@ import Movies from "./components/Movies";
 import MovieSection from "./components/MovieSection";
 import SectionDetails from "./components/SectionDetails";
 import SuccessScreen from "./components/SuccessScreen";
-import Loaging from "./assets/gif/loading.gif";
+import Loaging from "./assets/img/loading.png";
 import "./css/reset.css";
 import "./css/style.css";
 

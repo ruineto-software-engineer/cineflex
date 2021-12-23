@@ -18,7 +18,7 @@ export default function Movies(props) {
     return(
       <Fragment>
         <div className="loading-screen">
-          <img className="loading-screen-gif" alt="loading.gif" src={props.loading}/>
+          <img className="loading-screen-icon" alt="loading.gif" src={props.loading}/>
         </div>
       </Fragment>
     );
