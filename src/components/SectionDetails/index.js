@@ -77,22 +77,31 @@ export default function SectionDetails(props) {
     }
   }
 
+  function numberSeatValidation(currentSeat) {
+    if(currentSeat < 10){
+      let newCurrentSeat = "0" + currentSeat
+      return newCurrentSeat;
+    }else{
+      return currentSeat;
+    }
+  }
+
   const sectionDetaisReader = sectionDetais.seats.map((currentSeat) => {
     return (
       <Fragment key={currentSeat.id}>
         {currentSeat.isAvailable ?
           idSeatInfo === currentSeat.id ?
-            <DefaultSeat classSeat='current-seat-available' name={currentSeat.name}
+            <DefaultSeat classSeat='current-seat-available' name={numberSeatValidation(currentSeat.name)}
               seatState={reserveSeats} id={currentSeat.id} handle={handleSeat}
               idSeatSetStage={setIdSeatInfo}
             />
           :
-            <Seat classSeat='current-seat-available' name={currentSeat.name} 
+            <Seat classSeat='current-seat-available' name={numberSeatValidation(currentSeat.name)} 
               seatState={reserveSeats} id={currentSeat.id} handle={handleSeat}
               stageNumberSeat={setSeatNumberName}
             />
         :
-          <Seat classSeat='current-seat-unavailable' name={currentSeat.name} />
+          <Seat classSeat='current-seat-unavailable' name={numberSeatValidation(currentSeat.name)} />
         }
       </Fragment>
     );
