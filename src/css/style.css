@@ -120,7 +120,7 @@ body, html{
 .bottombar-title{
   margin-left: 14px;
 
-  font-size: clamp(10px, 5.5vw, 26px);
+  font-size: clamp(10px, 6vw, 26px);
   line-height: 30px;
   
   color: #293845;  
@@ -530,7 +530,21 @@ body, html{
   font-style: italic;
   font-size: 18px;
   line-height: 21px;
+}
 
+.form-control::-webkit-input-placeholder{
+  color: #AFAFAF;
+}
+
+.form-control::-moz-placeholder{
+  color: #AFAFAF;
+}
+
+.form-control:-ms-input-placeholder {
+  color: #AFAFAF;
+}
+
+.form-control:-moz-placeholder{
   color: #AFAFAF;
 }
 
