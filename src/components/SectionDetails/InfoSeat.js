@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { cpfMask } from './mask'
 
 export default function InfoSeat(props) {
@@ -10,6 +10,11 @@ export default function InfoSeat(props) {
   const [inputInfo, setInputInfo] = useState({ idAssento: '', nome: "", cpf: "" });
   const [indexBuyer, setIndexBuyer] = useState(null);
   const [edited, setEdited] = useState(false);
+  const [newNumberSeat, setNewNumberSeat] = useState(props.seatNumberStage);
+
+  useEffect(() => {
+    setNewNumberSeat(newNumberSeat);
+  }, [newNumberSeat])
 
   function handleName(e){
     setName(e.target.value);
@@ -119,7 +124,7 @@ export default function InfoSeat(props) {
   return(
     <Fragment>
       <div className="form-group-container">
-        <p className="form-group-title">Assento {props.seatNumber}</p>
+        <p className="form-group-title">Assento {newNumberSeat}</p>
 
         <FromGroup inputSituation={inputCondition} confirmButtonSituation={confirmButtonCondition}
           editButtonSituation={editButtonCondition} nameValue={name} nameStage={handleName} cpfValue={cpfMask(cpf)} 

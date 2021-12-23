@@ -13,6 +13,7 @@ export default function SectionDetails(props) {
   const [reserveSeats, setReserveSeats] = useState({ids: [], compradores: []});
   const [buttonOpacity, setButtonOpacity] = useState('');
   const [idSeatInfo, setIdSeatInfo] = useState(0);
+  const [seatNumberName, setSeatNumberName] = useState(0);
   
   useEffect(() => {
     const promisse = axios.get(`https://mock-api.driven.com.br/api/v4/cineflex/showtimes/${idSection}/seats`);
@@ -88,6 +89,7 @@ export default function SectionDetails(props) {
           :
             <Seat classSeat='current-seat-available' name={currentSeat.name} 
               seatState={reserveSeats} id={currentSeat.id} handle={handleSeat}
+              stageNumberSeat={setSeatNumberName}
             />
         :
           <Seat classSeat='current-seat-unavailable' name={currentSeat.name} />
@@ -99,8 +101,9 @@ export default function SectionDetails(props) {
   const reserveSeatsReader = reserveSeats.ids.map((reserveSeat) => {
     return(
       <Fragment key={reserveSeat}>
-        <InfoSeat seatNumber={reserveSeat} seatValue={reserveSeats} seatStage={setReserveSeats}
-          idSeatSetStage={setIdSeatInfo}
+        <InfoSeat seatNumber={reserveSeat} seatNumberStage={seatNumberName} 
+          stageNumberSeat={setSeatNumberName} seatValue={reserveSeats} 
+          seatStage={setReserveSeats} idSeatSetStage={setIdSeatInfo}
         />
       </Fragment>
     );

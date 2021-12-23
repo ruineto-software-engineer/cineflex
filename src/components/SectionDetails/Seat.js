@@ -4,6 +4,7 @@ export default function Seat(props) {
   const [clickedSeat, setClickedSeat] = useState(props.classSeat);
 
   function chosenSeat(selectedSeat, valueClickedSeat) {
+    props.stageNumberSeat(props.name);
     if(selectedSeat === `current-seat-available`){
       if(valueClickedSeat === `current-seat-selected`){
         const objectReader = props.seatState.compradores.filter((comprador) => { 
