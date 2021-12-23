@@ -41,6 +41,7 @@ body, html{
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 1;
 }
 
 .topbar-backpage-content{
@@ -537,7 +538,7 @@ ion-icon{
   font-size: 14px;
   line-height: 21px;
   letter-spacing: 0.04em;
-  
+
   color: #FFFFFF;
 }
 
@@ -557,6 +558,18 @@ ion-icon{
   letter-spacing: 0.04em;
   
   color: #FFFFFF;
+}
+
+.disabled-input{
+  pointer-events: none;
+
+  background-color: #c6c8ca;
+}
+
+.disabled-button{
+  pointer-events: none;
+
+  opacity: 0.6;
 }
 
 .loading-screen{
