@@ -1,19 +1,36 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 
 export default function InfoSeat(props) {
+  const [name, setName] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [inputInfo, setInputInfo] = useState({ idAssento: '', nome: "", cpf: "" });
+
   function handleName(e){
-    props.seatStage({
-      ...props.seatValue,
+    setName(e.target.value);
+    setInputInfo({
+      ...inputInfo,
       idAssento: props.seatNumber,
       nome: e.target.value
     });
   }
 
   function handleCPF(e){
-    props.seatStage({
-      ...props.seatValue,
+    setCpf(e.target.value);
+    setInputInfo({
+      ...inputInfo,
       idAssento: props.seatNumber,
       cpf: e.target.value
+    });
+  }
+
+  function handleSendInfoSeat() {
+    setInputInfo({ idAssento: '', nome: "", cpf: "" });
+    props.seatStage({
+      ids: [ ...props.seatValue.ids ],
+      compradores: [
+        ...props.seatValue.compradores,
+        inputInfo
+      ]
     });
   }
 
@@ -21,14 +38,18 @@ export default function InfoSeat(props) {
     <Fragment>
       <div className="form-group-container">
         <p className="form-group-title">Assento {props.seatNumber}</p>
+
         <div className="form-group">
           <label className='form-label'>Nome do comprador:</label>
-          <input onChange={handleName} type="text" className="form-control" placeholder="Digite seu nome..." />
+          <input value={name} onChange={handleName} type="text" className="form-control" placeholder="Digite seu nome..." />
         </div>
+
         <div className="form-group">
           <label className='form-label'>CPF do comprador:</label>
-          <input onChange={handleCPF} type="text" className="form-control" maxLength="14" placeholder="Digite seu CPF..." />
+          <input value={cpf} onChange={handleCPF} type="text" className="form-control" maxLength="14" placeholder="Digite seu CPF..." />
         </div>
+
+        <button onClick={handleSendInfoSeat} type="button" className="form-button-confirm">Confirmar reserva</button>
       </div>
     </Fragment>
   );

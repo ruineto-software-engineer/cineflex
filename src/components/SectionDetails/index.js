@@ -9,7 +9,6 @@ export default function SectionDetails(props) {
   const { idSection } = useParams();
   const [sectionDetais, setSectionDetais] = useState();
   const [reserveSeats, setReserveSeats] = useState({ids: [], compradores: []});
-  const [inputInfo, setInputInfo] = useState({ idAssento: '', nome: "", cpf: "" });
   
   useEffect(() => {
     const promisse = axios.get(`https://mock-api.driven.com.br/api/v4/cineflex/showtimes/${idSection}/seats`);
@@ -73,22 +72,11 @@ export default function SectionDetails(props) {
       </Fragment>
     );
   });
-  
-  if(inputInfo.idAssento !== '' && inputInfo.nome !== '' && inputInfo.cpf.length === 14){
-    setInputInfo({ idAssento: '', nome: "", cpf: "" });
-    setReserveSeats({
-      ids: [ ...reserveSeats.ids ],
-      compradores: [
-        ...reserveSeats.compradores,
-        inputInfo
-      ]
-    });
-  }
 
   const reserveSeatsReader = reserveSeats.ids.map((reserveSeat) => {
     return(
       <Fragment key={reserveSeat}>
-        <InfoSeat seatNumber={reserveSeat} seatValue={inputInfo} seatStage={setInputInfo} />
+        <InfoSeat seatNumber={reserveSeat} seatValue={reserveSeats} seatStage={setReserveSeats} />
       </Fragment>
     );
   });
@@ -97,6 +85,8 @@ export default function SectionDetails(props) {
     props.sendSuccesObject(reserveSeats, idSection, '');
     axios.post(`https://mock-api.driven.com.br/api/v4/cineflex/seats/book-many`, reserveSeats);
   }
+
+  console.log(reserveSeats);
 
   return(
     <Fragment>
