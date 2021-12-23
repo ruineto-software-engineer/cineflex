@@ -116,8 +116,6 @@ export default function InfoSeat(props) {
     }
   }
 
-  console.log(inputInfo)
-
   return(
     <Fragment>
       <div className="form-group-container">
