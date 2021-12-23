@@ -125,9 +125,6 @@ export default function SectionDetails(props) {
     }
   }
 
-  console.log(reserveSeats);
-  console.log(idSeatInfo);
-
   return(
     <Fragment>
       <main className="main-container">

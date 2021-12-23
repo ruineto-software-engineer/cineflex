@@ -69,18 +69,23 @@ export default function InfoSeat(props) {
 
     if(window.confirm("Você realmente deseja confirmar esta reserva?")){
       if(edited === false){
-        setInputCondition("disabled-input");
-        setConfirmButtonCondition("disabled-button");
-        setEditButtonCondition("");
-  
-        setInputInfo({ idAssento: '', nome: "", cpf: "" });
-        props.seatStage({
-          ids: [ ...props.seatValue.ids ],
-          compradores: [
-            ...props.seatValue.compradores,
-            inputInfo
-          ]
-        });
+        if(inputInfo.cpf.length < 14){
+          alert("Reveja o campo de CPF, não pode ser menor do que 14 caracteres.");
+          return;
+        }else{
+          setInputCondition("disabled-input");
+          setConfirmButtonCondition("disabled-button");
+          setEditButtonCondition("");
+    
+          setInputInfo({ idAssento: '', nome: "", cpf: "" });
+          props.seatStage({
+            ids: [ ...props.seatValue.ids ],
+            compradores: [
+              ...props.seatValue.compradores,
+              inputInfo
+            ]
+          });
+        }
       }else{
         setInputCondition("disabled-input");
         setConfirmButtonCondition("disabled-button");
