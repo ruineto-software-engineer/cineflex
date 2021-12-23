@@ -1,4 +1,5 @@
 import { Fragment, useState } from "react";
+import { cpfMask } from './mask'
 
 export default function InfoSeat(props) {
   const [name, setName] = useState("");
@@ -24,7 +25,7 @@ export default function InfoSeat(props) {
     setInputInfo({
       ...inputInfo,
       idAssento: props.seatNumber,
-      cpf: e.target.value
+      cpf: cpfMask(e.target.value)
     });
   }
 
@@ -105,13 +106,15 @@ export default function InfoSeat(props) {
     }
   }
 
+  console.log(inputInfo)
+
   return(
     <Fragment>
       <div className="form-group-container">
         <p className="form-group-title">Assento {props.seatNumber}</p>
 
         <FromGroup inputSituation={inputCondition} confirmButtonSituation={confirmButtonCondition}
-          editButtonSituation={editButtonCondition} nameValue={name} nameStage={handleName} cpfValue={cpf} 
+          editButtonSituation={editButtonCondition} nameValue={name} nameStage={handleName} cpfValue={cpfMask(cpf)} 
           cpfStage={handleCPF} confirmAction={handleConfirm} editAction={handleEdit} deleteAction={handleDelete}
         />
       </div>
