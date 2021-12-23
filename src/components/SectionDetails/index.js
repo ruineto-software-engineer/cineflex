@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Fragment, useEffect, useState } from 'react';
-import { /* Link, */ useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Bottombar from '../Bars/Bottombar';
 import Seat from './Seat';
 import InfoSeat from './InfoSeat';
@@ -10,6 +10,7 @@ export default function SectionDetails(props) {
   const navigate = useNavigate();
   const [sectionDetais, setSectionDetais] = useState();
   const [reserveSeats, setReserveSeats] = useState({ids: [], compradores: []});
+  const [buttonOpacity, setButtonOpacity] = useState('');
   
   useEffect(() => {
     const promisse = axios.get(`https://mock-api.driven.com.br/api/v4/cineflex/showtimes/${idSection}/seats`);
@@ -18,6 +19,14 @@ export default function SectionDetails(props) {
       setSectionDetais(response.data);
     });
   }, [idSection]);
+
+  useEffect(() => {
+    if(reserveSeats.ids.length === 0){
+      setButtonOpacity('opacity-button');
+    }else{
+      setButtonOpacity('');
+    }
+  }, [reserveSeats.ids]);
 
   if(sectionDetais === undefined){
     return(
@@ -144,7 +153,7 @@ export default function SectionDetails(props) {
             </Fragment>
           }
 
-          <button onClick={() => sendObject()} type="button" className="form-button">Reservar assento(s)</button>
+          <button onClick={() => sendObject()} type="button" className={`form-button ${buttonOpacity}`}>Reservar assento(s)</button>
         </form>
 
         <Bottombar title={sectionDetais.movie.title} posterURL={sectionDetais.movie.posterURL} weekday={sectionDetais.day.weekday} showtime={sectionDetais.name} />

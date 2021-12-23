@@ -572,6 +572,10 @@ ion-icon{
   opacity: 0.6;
 }
 
+.opacity-button{
+  opacity: 0.6;
+}
+
 .loading-screen{
   height: 100%;
   width: 100%;
