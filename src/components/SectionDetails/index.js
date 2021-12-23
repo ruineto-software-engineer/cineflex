@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Bottombar from '../Bars/Bottombar';
 import Seat from './Seat';
 import InfoSeat from './InfoSeat';
+import DefaultSeat from './DefaultSeat';
 
 export default function SectionDetails(props) {
   const { idSection } = useParams();
@@ -11,7 +12,7 @@ export default function SectionDetails(props) {
   const [sectionDetais, setSectionDetais] = useState();
   const [reserveSeats, setReserveSeats] = useState({ids: [], compradores: []});
   const [buttonOpacity, setButtonOpacity] = useState('');
-  /* const [idSeatInfo, setIdSeatInfo] = useState(''); */
+  const [idSeatInfo, setIdSeatInfo] = useState('');
   
   useEffect(() => {
     const promisse = axios.get(`https://mock-api.driven.com.br/api/v4/cineflex/showtimes/${idSection}/seats`);
@@ -73,9 +74,16 @@ export default function SectionDetails(props) {
     return (
       <Fragment key={currentSeat.id}>
         {currentSeat.isAvailable ?
-          <Seat classSeat='current-seat-available' name={currentSeat.name} 
-            seatState={reserveSeats} id={currentSeat.id} handle={handleSeat}
-          />
+          idSeatInfo === currentSeat.id ?
+            <DefaultSeat classSeat='current-seat-available' name={currentSeat.name}
+              seatState={reserveSeats} id={currentSeat.id} handle={handleSeat}
+              idSeatSetStage={idSeatInfo}
+            />
+          :
+            <Seat classSeat='current-seat-available' name={currentSeat.name} 
+              seatState={reserveSeats} id={currentSeat.id} handle={handleSeat}
+              idSeatSetStage={idSeatInfo}
+            />
         :
           <Seat classSeat='current-seat-unavailable' name={currentSeat.name} />
         }
@@ -87,7 +95,7 @@ export default function SectionDetails(props) {
     return(
       <Fragment key={reserveSeat}>
         <InfoSeat seatNumber={reserveSeat} seatValue={reserveSeats} seatStage={setReserveSeats}
-          /* idSeatSetStage={setIdSeatInfo} */
+          idSeatSetStage={setIdSeatInfo}
         />
       </Fragment>
     );

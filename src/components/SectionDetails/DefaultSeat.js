@@ -33,15 +33,9 @@ export default function Seat(props) {
 
   return(
     <Fragment>
-    {props.idSeatSetStage !== '' ?
-        <div onClick={() => chosenSeat(props.classSeat, clickedSeat)} className={clickedSeat}>
-          { props.name }
-        </div> 
-      :
-        <div onClick={() => chosenSeat(props.classSeat, clickedSeat)} className={clickedSeat}>
-          { props.name }
-        </div>
-    }
+      <div onClick={() => chosenSeat(props.classSeat, clickedSeat)} className={clickedSeat}>
+        { props.name }
+      </div> 
     </Fragment>
   );
 }

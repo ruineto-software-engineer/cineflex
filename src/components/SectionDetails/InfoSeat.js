@@ -30,7 +30,7 @@ export default function InfoSeat(props) {
 
   function handleDelete() {
     if(window.confirm("Você realmente deseja deletar esta reserva?")){
-      /* props.idSeatSetStage(props.seatNumber); */
+      props.idSeatSetStage(props.seatNumber);
       props.seatStage(
         {
           ids: props.seatValue.ids.filter((idSeatCurrent) => { return idSeatCurrent !== props.seatNumber }),
