@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { Fragment, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { /* Link, */ useNavigate, useParams } from 'react-router-dom';
 import Bottombar from '../Bars/Bottombar';
 import Seat from './Seat';
 import InfoSeat from './InfoSeat';
 
 export default function SectionDetails(props) {
   const { idSection } = useParams();
+  const navigate = useNavigate();
   const [sectionDetais, setSectionDetais] = useState();
   const [reserveSeats, setReserveSeats] = useState({ids: [], compradores: []});
   
@@ -82,8 +83,22 @@ export default function SectionDetails(props) {
   });
 
   function sendObject() {
-    props.sendSuccesObject(reserveSeats, idSection, '');
-    axios.post(`https://mock-api.driven.com.br/api/v4/cineflex/seats/book-many`, reserveSeats);
+    if(reserveSeats.ids.length !== 0 || reserveSeats.compradores.length !== 0){
+      if(window.confirm("Você confirma todas as seleções feitas?")){
+        if(reserveSeats.ids.length === reserveSeats.compradores.length){
+          props.sendSuccesObject(reserveSeats, idSection, '');
+          const promisse = axios.post(`https://mock-api.driven.com.br/api/v4/cineflex/seats/book-many`, reserveSeats);
+          promisse.then(() => navigate('/success-screen'));
+          promisse.catch(() => window.location.reload(true));
+        }else{
+          alert(`Por gentileza, reveja os campos dos assentos selecionados, existem alguns assentos que estão vazios, ou que não foram confirmados.`);
+          return;
+        }
+      }
+    }else{
+      alert("Por gentileza, selecione os assentos desejados para continuar.");
+      return;
+    }
   }
 
   console.log(reserveSeats);
@@ -128,10 +143,8 @@ export default function SectionDetails(props) {
               {reserveSeatsReader}
             </Fragment>
           }
-          
-          <Link to='/success-screen'>
-            <button onClick={() => sendObject()} type="button" className="form-button">Reservar assento(s)</button>
-          </Link>
+
+          <button onClick={() => sendObject()} type="button" className="form-button">Reservar assento(s)</button>
         </form>
 
         <Bottombar title={sectionDetais.movie.title} posterURL={sectionDetais.movie.posterURL} weekday={sectionDetais.day.weekday} showtime={sectionDetais.name} />
