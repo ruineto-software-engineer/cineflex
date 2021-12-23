@@ -120,7 +120,7 @@ body, html{
 .bottombar-title{
   margin-left: 14px;
 
-  font-size: 26px;
+  font-size: clamp(10px, 5.5vw, 26px);
   line-height: 30px;
   
   color: #293845;  
