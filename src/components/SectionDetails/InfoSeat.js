@@ -4,8 +4,11 @@ export default function InfoSeat(props) {
   const [name, setName] = useState("");
   const [cpf, setCpf] = useState("");
   const [inputCondition, setInputCondition] = useState("");
-  const [buttonCondition, setButtonCondition] = useState("");
+  const [confirmButtonCondition, setConfirmButtonCondition] = useState("");
+  const [editButtonCondition, setEditButtonCondition] = useState("disabled-button");
   const [inputInfo, setInputInfo] = useState({ idAssento: '', nome: "", cpf: "" });
+  const [indexBuyer, setIndexBuyer] = useState(null);
+  const [edited, setEdited] = useState(false);
 
   function handleName(e){
     setName(e.target.value);
@@ -25,19 +28,51 @@ export default function InfoSeat(props) {
     });
   }
 
+  function handleEdit() {
+    setInputCondition("");
+    setConfirmButtonCondition("");
+    for (let i = 0; i < props.seatValue.compradores.length; i++) {
+      const element = props.seatValue.compradores[i].idAssento;
+      if(props.seatNumber === element){
+        setIndexBuyer(i);
+      }
+    }
+
+    setEdited(true);
+    setInputInfo({ idAssento: props.seatNumber, nome: name, cpf: cpf });
+  }
+
   function handleSendInfoSeat() {
     if(window.confirm("Você realmente deseja confirmar esta reserva?")){
-      setInputCondition("disabled-input");
-      setButtonCondition("disabled-button");
+      if(edited === false){
+        setInputCondition("disabled-input");
+        setConfirmButtonCondition("disabled-button");
+        setEditButtonCondition("");
+  
+        setInputInfo({ idAssento: '', nome: "", cpf: "" });
+        props.seatStage({
+          ids: [ ...props.seatValue.ids ],
+          compradores: [
+            ...props.seatValue.compradores,
+            inputInfo
+          ]
+        });
+      }else{
+        setInputCondition("disabled-input");
+        setConfirmButtonCondition("disabled-button");
+        setEditButtonCondition("");
 
-      setInputInfo({ idAssento: '', nome: "", cpf: "" });
-      props.seatStage({
-        ids: [ ...props.seatValue.ids ],
-        compradores: [
-          ...props.seatValue.compradores,
-          inputInfo
-        ]
-      });
+        props.seatStage({
+          ids: [ ...props.seatValue.ids ],
+          compradores: props.seatValue.compradores.map((comprador, index) => {
+            if(comprador.idAssento === props.seatNumber){
+              return props.seatValue.compradores[indexBuyer] = inputInfo;
+            }else{
+              return props.seatValue.compradores[index];
+            }
+          })
+        });
+      }
     }
   }
 
@@ -46,8 +81,9 @@ export default function InfoSeat(props) {
       <div className="form-group-container">
         <p className="form-group-title">Assento {props.seatNumber}</p>
 
-        <FromGroup inputSituation={inputCondition} buttonSituation={buttonCondition} nameValue={name} 
-                   nameStage={handleName} cpfValue={cpf} cpfStage={handleCPF} buttonStage={handleSendInfoSeat}
+        <FromGroup inputSituation={inputCondition} confirmButtonSituation={confirmButtonCondition}
+          editButtonSituation={editButtonCondition} nameValue={name} nameStage={handleName} cpfValue={cpf} 
+          cpfStage={handleCPF} buttonStage={handleSendInfoSeat} editAction={handleEdit}
         />
       </div>
     </Fragment>
@@ -67,7 +103,14 @@ function FromGroup(props) {
           <input value={props.cpfValue} onChange={props.cpfStage} type="text" className={`form-control ${props.inputSituation}`} maxLength="14" placeholder="Digite seu CPF..." />
         </div>
 
-        <button onClick={props.buttonStage} type="button" className={`form-button-confirm ${props.buttonSituation}`}>Confirmar reserva</button>     
+        <div className="form-group-buttons-container">
+          <button onClick={props.buttonStage} type="button" className={`form-button-confirm ${props.confirmButtonSituation}`}>
+            Confirmar <ion-icon name="checkmark-circle"></ion-icon>
+          </button>
+          <button onClick={props.editAction} type="button" className={`form-button-edit ${props.editButtonSituation}`}>
+            Editar <ion-icon name="create-outline"></ion-icon>
+          </button>   
+        </div>
     </Fragment>
   );
 }

@@ -15,7 +15,9 @@ export default function Topbar() {
           <div className="topbar-backpage-content">
             <h1 className="topbar-brand-backpage">CINEFLEX</h1>
 
-            <ion-icon onClick={hadleNavigate} name="arrow-undo-circle" />
+            <div className='icon-topbar'>
+              <ion-icon onClick={hadleNavigate} name="arrow-undo-circle" />
+            </div>
           </div>
         </div>
       :
