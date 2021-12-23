@@ -11,6 +11,7 @@ export default function SectionDetails(props) {
   const [sectionDetais, setSectionDetais] = useState();
   const [reserveSeats, setReserveSeats] = useState({ids: [], compradores: []});
   const [buttonOpacity, setButtonOpacity] = useState('');
+  /* const [idSeatInfo, setIdSeatInfo] = useState(''); */
   
   useEffect(() => {
     const promisse = axios.get(`https://mock-api.driven.com.br/api/v4/cineflex/showtimes/${idSection}/seats`);
@@ -51,7 +52,6 @@ export default function SectionDetails(props) {
       );
     }else{
       const objectReader = reserveSeats.compradores.filter((comprador) => { return comprador.idAssento === idSeat; });
-      console.log(objectReader);
 
       if(objectReader.length === 1){
         setReserveSeats(
@@ -74,7 +74,7 @@ export default function SectionDetails(props) {
       <Fragment key={currentSeat.id}>
         {currentSeat.isAvailable ?
           <Seat classSeat='current-seat-available' name={currentSeat.name} 
-                seatState={reserveSeats} id={currentSeat.id} handle={handleSeat} 
+            seatState={reserveSeats} id={currentSeat.id} handle={handleSeat}
           />
         :
           <Seat classSeat='current-seat-unavailable' name={currentSeat.name} />
@@ -86,7 +86,9 @@ export default function SectionDetails(props) {
   const reserveSeatsReader = reserveSeats.ids.map((reserveSeat) => {
     return(
       <Fragment key={reserveSeat}>
-        <InfoSeat seatNumber={reserveSeat} seatValue={reserveSeats} seatStage={setReserveSeats} />
+        <InfoSeat seatNumber={reserveSeat} seatValue={reserveSeats} seatStage={setReserveSeats}
+          /* idSeatSetStage={setIdSeatInfo} */
+        />
       </Fragment>
     );
   });

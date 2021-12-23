@@ -549,10 +549,11 @@ body, html{
 .form-group-buttons-container{
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .form-button-confirm{
-  width: 130px;
+  width: 120px;
   height: 42px;
 
   margin-top: 7px;
@@ -605,6 +606,37 @@ body, html{
 }
 
 .form-button-edit ion-icon{
+  color: #FFFFFF;
+
+  margin-left: 3px;
+
+  font-size: 20px;
+}
+
+.form-button-delete{
+  width: 95px;
+  height: 42px;
+
+  margin-top: 7px;
+  margin-left: 5px;
+
+  border: none;
+  border-radius: 3px;
+
+  font-size: 15px;
+  line-height: 21px;
+  letter-spacing: 0.04em;
+
+  background-color: #E8833A;
+
+  color: #FFFFFF;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+
+.form-button-delete ion-icon{
   color: #FFFFFF;
 
   margin-left: 3px;
