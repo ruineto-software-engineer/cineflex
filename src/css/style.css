@@ -83,6 +83,18 @@ body, html{
   align-items: center;
 }
 
+.icon-topbar:hover ion-icon{
+  color: #FFFFFF;
+
+  transition: all .5s ease-in-out;
+}
+
+.icon-topbar:active ion-icon{
+  color: #E8833A;
+
+  transition: all .5s ease-in-out;
+}
+
 .bottombar{
   height: 117px;
   width: 100%;
