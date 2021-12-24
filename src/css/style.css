@@ -489,9 +489,11 @@ body, html{
   font-size: 18px;
   line-height: 21px;
 
+  width: 80%;
+
   margin: 7px 0;
 
-  color: #293845;
+  color: #4E5A65;
 
   text-align: center;  
 }
@@ -734,7 +736,7 @@ body, html{
   } 
 }
 
-@media screen and (max-width: 399px) {
+@media screen and (max-width: 300px) {
   .seats-content{
     width: 85%;
   }
