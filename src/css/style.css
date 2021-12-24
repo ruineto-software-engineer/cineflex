@@ -234,7 +234,7 @@ body, html{
   line-height: 21px;
   letter-spacing: 0.02em;
   
-  background: #E8833A;
+  background-color: #E8833A;
 
   border: none;
   border-radius: 3px;
@@ -244,6 +244,22 @@ body, html{
   margin-right: 8px;
 
   cursor: pointer;
+}
+
+.current-movie-show-times-button:hover{
+  background-color: #FFFFFF;
+
+  color: #E8833A;
+
+  border: 1px solid #E8833A;
+}
+
+.current-movie-show-times-button:active{
+  background-color: #E8833A;
+
+  color: #FFFFFF;
+
+  border: none;
 }
 
 .movie-section-flex{
@@ -579,6 +595,22 @@ body, html{
   color: #FFFFFF;
 }
 
+.form-button:hover{
+  background-color: #FFFFFF;
+
+  color: #E8833A;
+
+  border: 1px solid #E8833A;
+}
+
+.form-button:active{
+  background-color: #E8833A;
+
+  color: #FFFFFF;
+
+  border: none;
+}
+
 .form-group-buttons-container{
   display: flex;
   align-items: center;
@@ -615,6 +647,30 @@ body, html{
   font-size: 20px;
 }
 
+.form-button-confirm:hover{
+  background-color: #FFFFFF;
+
+  color: #E8833A;
+
+  border: 1px solid #E8833A;
+}
+
+.form-button-confirm:hover ion-icon{
+  color: #E8833A;
+}
+
+.form-button-confirm:active{
+  background-color: #E8833A;
+
+  color: #FFFFFF;
+
+  border: none;
+}
+
+.form-button-confirm:active ion-icon{
+  color: #FFFFFF;
+}
+
 .form-button-edit{
   width: 95px;
   height: 42px;
@@ -646,6 +702,30 @@ body, html{
   font-size: 20px;
 }
 
+.form-button-edit:hover{
+  background-color: #FFFFFF;
+
+  color: #E8833A;
+
+  border: 1px solid #E8833A;
+}
+
+.form-button-edit:hover ion-icon{
+  color: #E8833A;
+}
+
+.form-button-edit:active{
+  background-color: #E8833A;
+
+  color: #FFFFFF;
+
+  border: none;
+}
+
+.form-button-edit:active ion-icon{
+  color: #FFFFFF;
+}
+
 .form-button-delete{
   width: 95px;
   height: 42px;
@@ -675,6 +755,30 @@ body, html{
   margin-left: 3px;
 
   font-size: 20px;
+}
+
+.form-button-delete:hover{
+  background-color: #FFFFFF;
+
+  color: #E8833A;
+
+  border: 1px solid #E8833A;
+}
+
+.form-button-delete:hover ion-icon{
+  color: #E8833A;
+}
+
+.form-button-delete:active{
+  background-color: #E8833A;
+
+  color: #FFFFFF;
+
+  border: none;
+}
+
+.form-button-delete:active ion-icon{
+  color: #FFFFFF;
 }
 
 .disabled-input{
