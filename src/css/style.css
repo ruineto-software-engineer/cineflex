@@ -736,9 +736,9 @@ body, html{
   } 
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 399px) {
   .seats-content{
-    width: 85%;
+    width: 89%;
   }
 }
 
