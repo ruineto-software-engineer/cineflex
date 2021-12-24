@@ -6,6 +6,10 @@
   transition: all 1s ease-in-out;
 }
 
+ion-icon{
+  transition: unset;
+}
+
 body, html{
   height: 100%;
 	font-family: 'Roboto', sans-serif;
@@ -77,8 +81,6 @@ body, html{
   display: flex;
   justify-content: center;
   align-items: center;
-
-  cursor: pointer;
 }
 
 .bottombar{
@@ -732,6 +734,12 @@ body, html{
   } 
 }
 
+@media screen and (max-width: 399px) {
+  .seats-content{
+    width: 85%;
+  }
+}
+
 @media screen and (min-width: 400px) {
   .movies-content{
     width: 85%;
@@ -787,7 +795,8 @@ body, html{
 
   .current-seat-available,
   .current-seat-unavailable,
-  .current-seat-selected{
+  .current-seat-selected,
+  .icon-topbar ion-icon{
     cursor: pointer;
   }
 
