@@ -802,6 +802,10 @@ body, html{
     cursor: pointer;
   }
 
+  .form-info{
+    width: 20%;
+  }
+
   .topbar-backpage-content{
     width: 98%;
   }
