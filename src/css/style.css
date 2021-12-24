@@ -2,6 +2,8 @@
 	padding:0;
 	margin:0;
 	box-sizing: border-box;
+
+  transition: all 1s ease-in-out;
 }
 
 body, html{
@@ -75,6 +77,8 @@ body, html{
   display: flex;
   justify-content: center;
   align-items: center;
+
+  cursor: pointer;
 }
 
 .bottombar{
@@ -119,6 +123,7 @@ body, html{
 
 .bottombar-title{
   margin-left: 14px;
+  padding-right: 5px;
 
   font-size: clamp(10px, 6vw, 26px);
   line-height: 30px;
@@ -235,6 +240,8 @@ body, html{
   color: #FFFFFF;
 
   margin-right: 8px;
+
+  cursor: pointer;
 }
 
 .movie-section-flex{
@@ -289,7 +296,7 @@ body, html{
 }
 
 .movie-section-button-container{
-  padding-bottom: 25px;
+  padding: 25px 0;
 }
 
 .movie-section-button{
@@ -384,7 +391,7 @@ body, html{
   
   display: flex;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
 }
 
 .seat-subtitle-available{
@@ -723,4 +730,68 @@ body, html{
       -webkit-transform: rotate(360deg); 
       transform:rotate(360deg); 
   } 
+}
+
+@media screen and (min-width: 400px) {
+  .movies-content{
+    width: 85%;
+  }
+
+  .seats-content{
+    width: 85%;
+  }
+
+  .movie{
+    margin: 0 11px 10px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .movies-content{
+    justify-content: center;
+  }
+
+  .seats-content{
+    width: 70%;
+  }
+
+  .seats-subtitle-content{
+    width: 45%;
+  }
+
+  .movie{
+    margin: 0 11px 10px;
+  }
+
+  .topbar-backpage-content{
+    width: 96%;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .movies-content{
+    justify-content: center;
+  }
+
+  .seats-content{
+    width: 25%;
+  }
+
+  .seats-subtitle-content{
+    width: 20%;
+  }
+
+  .movie{
+    margin: 0 11px 10px;
+  }
+
+  .current-seat-available,
+  .current-seat-unavailable,
+  .current-seat-selected{
+    cursor: pointer;
+  }
+
+  .topbar-backpage-content{
+    width: 98%;
+  }
 }
