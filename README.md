@@ -1,4 +1,4 @@
-# CINEFLEX
+# Cineflex
 
 Looking for a movie to pass the time? And want to do it fast? The CINEFLEX app will guarantee an excellent experience regarding the selection of the movie you want, in addition to choosing your seat in the desired section and much more!
 
